@@ -94,10 +94,13 @@ This line creates a variable named selv. It checks if there is only one filter a
 
 var revcw = CALCULATE([Revenue],dim_date[wn]= selv)
 This line creates a variable named revcw. It calculates the revenue by applying a filter on the dim_date[wn] column, where the value matches the one stored in the selv variable. The [Revenue] measure is used for this calculation.
+
 Var revpw = CALCULATE([Revenue],FILTER(ALL(dim_date),dim_date[wn]= selv-1))
 This line creates a variable named revpw. It calculates the revenue for the previous week by applying a filter on the dim_date[wn] column, where the value is one less than the one stored in the selv variable. The FILTER function combined with ALL(dim_date) ensures that the filter is applied to all the dates, regardless of other filters that might be active. The [Revenue] measure is used for this calculation.
+
 DIVIDE (revcw, revpw,0)-1
 This line calculates the percentage change in revenue WoW. It uses the DIVIDE function to divide the value of revcw (current week revenue) by the value of revpw (previous week revenue), with a specified default value of 0 in case the divisor is 0. The resulting quotient is then subtracted by 1 to calculate the percentage change.
+
 The entire formula returns the week-over-week percentage change in revenue. This formula can be used as a calculated column or a measure in Power BI to display the WoW revenue change in a visual or table.
 
 
